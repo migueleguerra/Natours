@@ -5,11 +5,12 @@
   background-position: top
   position: relative
 
-  -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%)
-  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%)
+  @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) 
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%)
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%)
 
-  //high resolution screen                   show picture when there is big screens
-  @media (min-resolution: 192dpi) and (min-width: 37.5em), (min-width: 125em)
+  //high resolution screen     work for safari        show picture when there is big screens
+  @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em), only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em), only screen and (min-width: 125em)
     background-image: linear-gradient(to right bottom, rgba($color-primary-light, 0.8), rgba($color-primary-dark, 0.8)), url(../img/hero.jpg)
 
   @include respond(phone)
